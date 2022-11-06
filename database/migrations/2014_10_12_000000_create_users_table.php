@@ -22,7 +22,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->dateTime('date_of_birth')->nullable();
             $table->timestamps();
-        }
+            
+        });
     }
 
     /**
