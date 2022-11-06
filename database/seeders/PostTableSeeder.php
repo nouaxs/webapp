@@ -19,5 +19,7 @@ class PostTableSeeder extends Seeder
         $pizzalove->caption = "I love pizza";
         $pizzalove->user_id = 1;
         $pizzalove->save();
+
+        $posts = Post::factory()->count(15)->create();
     }
 }

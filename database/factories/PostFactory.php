@@ -20,7 +20,6 @@ class PostFactory extends Factory
         return [
             'caption' => fake()->realText(rand(10,40)),
             'user_id' => fake()->randomElement(User::get('id')),
-            'email' => fake()->unique()->safeEmail(),
         ];
     }
 }

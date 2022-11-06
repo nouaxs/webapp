@@ -19,7 +19,7 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'content' => fake()->realText(rand(5,30)),
+            'content' => fake()->realText(rand(10,30)),
             'user_id' => fake()->randomElement(User::get('id')),
             'post_id' => fake()->randomElement(Post::get('id')),
         ];
