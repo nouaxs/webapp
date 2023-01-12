@@ -23,8 +23,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-/*
-Route::get('/users/{id}', function($user) {
-    return view('user', ['user'=>$user]);
-});*/
+
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 require __DIR__.'/auth.php';
