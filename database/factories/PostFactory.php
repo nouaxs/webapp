@@ -18,7 +18,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'caption' => fake()->realText(rand(10,40)),
+            'caption' => fake()->realText($maxNbChars = 100, $indexSize = 2),
             'user_id' => fake()->randomElement(User::get('id')),
         ];
     }
