@@ -62,7 +62,18 @@
 
 <body>
     @include('includes.header')
-    
+
+    @if ($errors->any())
+        <div>
+            Errors:
+            <ul>
+                @foreach ($error->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="center">
         <div class="col-md-10">
             <h1>@yield('title')</h1>

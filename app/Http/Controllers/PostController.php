@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'content'=> 'required|max:800',
+        ]);
+
+        $post=new Post;
+        $post->user_id= auth()->user()->id;
+        $post->content=$request->content;
+        $post->save();
+
+        return redirect('dashboard/posts')->with('success','Data has been added');
     }
 
     /**
