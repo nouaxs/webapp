@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Profile</title>
+        @section('title', 'Create Post')
     </head>
 
     <body>
