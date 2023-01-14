@@ -52,6 +52,17 @@
         .dropdown-content a:hover {
             background-color: #ddd;
         }
+
+        .btn {
+            font: sans-serif;
+            padding: 0;
+            border: none;
+            background-color: transparent;
+            color: black;
+            pointer-events: none;
+            font-weight: 200;
+        }
+
     </style>
 </head>
 
@@ -82,8 +93,13 @@
                         <div class="dropbtn" id="navbarDropdown" role="button" data-bs-toggle="dropdown-content"
                             aria-expanded="false">▼ More </div>
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
-                            <a href="#">My Profile</a>
-                            <a href="#">Logout</a>
+                            <a href="users/{{ $id = Auth::user()->id }}">My Profile</a>
+                            <a href="">
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Logout</button>
+                                </form>
+                            </a>
                         </div>
                     </li>
                 </ul>
