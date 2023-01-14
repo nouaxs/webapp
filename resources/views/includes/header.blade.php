@@ -68,27 +68,36 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Products</a>
+                    <a class="nav-link" href="{{route('posts.index')}}">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact Us</a>
                 </li>
             </ul>
-
-
-
-
         </div>
-        <ul class="nav justify-content-end">
-            <li class="nav-item dropdown">
-                <div class="dropbtn" id="navbarDropdown" role="button" data-bs-toggle="dropdown-content"
-                    aria-expanded="false">▼ More </div>
-                <div class="dropdown-content" aria-labelledby="navbarDropdown">
-                    <a href="#">My Profile</a>
-                    <a href="#">Logout</a>
-                </div>
-            </li>
-        </ul>
+        @if (Route::has('login'))
+            @auth
+                <ul class="nav justify-content-end">
+                    <li class="nav-item dropdown">
+                        <div class="dropbtn" id="navbarDropdown" role="button" data-bs-toggle="dropdown-content"
+                            aria-expanded="false">▼ More </div>
+                        <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                            <a href="#">My Profile</a>
+                            <a href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            @else
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </li>
+                </ul>
+            @endauth
+        @endif
     </nav>
 </body>
 

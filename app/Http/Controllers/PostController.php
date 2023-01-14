@@ -45,7 +45,8 @@ class PostController extends Controller
         $post->content=$request->content;
         $post->save();
 
-        return redirect('dashboard/posts')->with('success','Data has been added');
+        session()->flash('message', 'Post was created');
+        return redirect()->route('posts.index');
     }
 
     /**
