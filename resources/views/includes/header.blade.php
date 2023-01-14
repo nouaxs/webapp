@@ -59,7 +59,6 @@
             border: none;
             background-color: transparent;
             color: black;
-            pointer-events: none;
             font-weight: 200;
         }
 
@@ -94,7 +93,7 @@
                             aria-expanded="false">▼ More </div>
                         <div class="dropdown-content" aria-labelledby="navbarDropdown">
                             <a href="users/{{ $id = Auth::user()->id }}">My Profile</a>
-                            <a href="">
+                            <a>
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Logout</button>

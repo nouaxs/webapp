@@ -37,12 +37,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'content'=> 'required|max:800',
+            'caption'=> 'required|max:800',
         ]);
 
         $post=new Post;
         $post->user_id= auth()->user()->id;
-        $post->content=$request->content;
+        $post->caption=$request->caption;
         $post->save();
 
         session()->flash('message', 'Post was created');
@@ -69,7 +69,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -81,7 +82,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'caption'=>'required|max:400',
+        ]);
+
+        $post=Post::findOrFail($id);
+        $post->caption=$request->caption;
+        $post->save();
+
+        session()->flash('message', 'Post was updated');
+        return redirect('dashboard/posts/'.$post->id);
     }
 
     /**
@@ -92,6 +102,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        session()->flash('message', 'Post was deleted');
+        return redirect()->route('posts.index');
     }
 }
