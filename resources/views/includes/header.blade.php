@@ -11,8 +11,8 @@
 
     <style>
         body {
-            background-color: rgb(240, 231, 231);
-            color: #636b6f;
+            background-color: rgb(223, 224, 233);
+            color: #02010f;
             font: sans-serif;
             font-weight: 200;
             height: 100vh;
@@ -61,7 +61,6 @@
             color: black;
             font-weight: 200;
         }
-
     </style>
 </head>
 
@@ -78,10 +77,10 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts.index') }}">Products</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact Us</a>
+                    <a class="nav-link" href="{{ route('users.index')}}">Authors</a>
                 </li>
             </ul>
         </div>
@@ -107,11 +106,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                    @endif
                 </ul>
             @endauth
         @endif

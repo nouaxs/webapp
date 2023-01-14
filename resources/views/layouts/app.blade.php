@@ -4,20 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <style>
+        .btn_nav {
+            font: sans-serif;
+            padding: 0;
+            border: none;
+            opacity: 0.7;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 45px;
+            width: 140px;
+            height: 45px;
+        }
+    </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
-    <style>
-        body {
-            background-color: rgb(240, 231, 231);
-            color: #636b6f;
-            font: sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: auto;
-        }
-    </style>
     @livewireStyles
 </head>
 
