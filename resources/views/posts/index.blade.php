@@ -7,10 +7,14 @@
 @section('content')
 
     <p>The posts on this platform</p>
-    <ul>
+    <a href="{{route('posts.create')}}">Create Post</a>
+    <ul style="list-style: none;">
         @foreach ($posts as $post)
             <li><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->caption }}</a></li>
         @endforeach
     </ul>
-    <a href="{{route('posts.create')}}">Create Post</a>
+    <div>
+        {{ $posts->links('pagination::bootstrap-4') }}
+        
+    </div>
 @endsection
