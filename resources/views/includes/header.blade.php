@@ -8,60 +8,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <style>
-        body {
-            background-color: rgb(223, 224, 233);
-            color: #02010f;
-            font: sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: auto;
-        }
-
-        .dropdown-content {
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            display: none;
-            right: 0;
-        }
-
-
-        .dropdown .dropbtn {
-            background-color: transparent;
-            color: #adb3b8;
-            border: none;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .btn {
-            font: sans-serif;
-            padding: 0;
-            border: none;
-            background-color: transparent;
-            color: black;
-            font-weight: 200;
-        }
-    </style>
+    
+    <link href="./header.css" rel="stylesheet" />
 </head>
 
 <body>
