@@ -18,10 +18,12 @@
             margin: auto;
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
     @include('includes.header')
+    @livewireScripts
 
     @if ($errors->any())
         <div>
