@@ -1,24 +1,25 @@
 @extends('layouts.app')
-@section('title', 'Edit Post')
 
 @section('content')
 
-
-    <h2>Post: {{ $post->caption }}</h2>
-    <p> posted by: {{ $post->user->name }}</p>
-    <br>
-    <br>
-    <form method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for='content'>Change post to:</label>
+    <div class="post">
+        <div class="post_body">
+            The post you want to edit:
+            {{ $post->caption }}
+            <form method="POST" action="{{ route('posts.update', ['id' => $post->id]) }}">
+                @csrf
+                @method('PUT')
+                <div>
+                    <label for='caption'>Type your changed post (max:800 characters)</label>
+                </div>
+                <textarea name="caption" rows="4" cols="50" maxlength='800' value='caption'></textarea>
+                <div>
+                    <button>Update post</button>
+                </div>
+                <a href="{{ route('posts.show', ['id' => $post->id]) }}">Cancel</a>
+            </form>
         </div>
-        <p><input name="content" type="text"></p>
-        <div>
-            <button type="submit" name="update">{{ $post->caption }}</button>
-        </div>
-        <a href="{{ route('posts.index') }}">Cancel</a>
-    </form>
-
+    </div>
 @endsection
+
+

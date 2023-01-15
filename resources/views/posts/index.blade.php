@@ -4,9 +4,7 @@
     Posts
 @endsection
 
-<head>
-    <link rel="stylesheet" href="{{ asset('postcontainer.css') }}" />
-</head>
+
 
 @section('content')
     <div class="scroll">

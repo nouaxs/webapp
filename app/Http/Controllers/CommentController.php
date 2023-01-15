@@ -52,8 +52,23 @@ class CommentController extends Controller
 
         session()->flash('message', 'Comment was created');
         return redirect('posts/' . $post_id);
+        
     }
 
+    /*
+    public function store(Request $request) {
+     if(Request::ajax()){
+           $comment = new Comment();
+           $comment->name = $request->name;
+           $comment->type = $request->type;
+           $comment->price = $request->price;
+
+           $comment->save();
+           return response()->json(['success'=>'Data is successfully added']);
+     }
+    }*/
+
+    
     /**
      * Display the specified resource.
      *

@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-<head>
-    <link rel="stylesheet" href="{{ asset('postcontainer.css') }}" />
-</head>
-
 @section('content')
     <div class="scroll">
         
@@ -22,6 +18,7 @@
                     <div>
                         <button>Add comment</button>
                     </div>
+                </form>
             </div>
             @foreach ($post->comments as $comment)
                 <div class="post">
