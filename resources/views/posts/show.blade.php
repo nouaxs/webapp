@@ -43,8 +43,9 @@
             @endforeach
             @if ($post->user->id == auth()->user()->id)
                 <br>
-                <form action="{{ route('posts.delete', ['post_id' => $post->id]) }}" method="delete">
+                <form action="{{ route('posts.destroy',  $post->id) }}" method="POST">
                     @csrf
+                    @method('DELETE')
                     <button class="btn_nav">Delete post</button>
                 </form>
                 <br>

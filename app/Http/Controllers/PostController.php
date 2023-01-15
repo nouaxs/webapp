@@ -82,12 +82,6 @@ class PostController extends Controller
         }
     }
 
-    public function canEdit($id):bool
-    {
-        $response = Gate::inspect('edit', Post::findOrFail($id));
-        return $response->allowed();
-    }
-
     /**
      * Update the specified resource in storage.
      *
