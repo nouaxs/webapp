@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -13,7 +13,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //$posts = Post::with('user')->paginate(5);
         //$posts = Post::all();
         $posts = Post::orderBy('CREATED_AT', 'desc')->with('user')->with('comments')->paginate(5);
@@ -39,12 +40,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'caption'=> 'required|max:800',
+            'caption' => 'required|max:800',
         ]);
 
-        $post=new Post;
-        $post->user_id= auth()->user()->id;
-        $post->caption=$request->caption;
+        $post = new Post;
+        $post->user_id = auth()->user()->id;
+        $post->caption = $request->caption;
         $post->save();
 
         session()->flash('message', 'Post was created');
@@ -71,8 +72,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
-        return view('posts.edit', compact('post'));
+        $response = Gate::inspect('edit', Post::findOrFail($id));
+        if ($response->allowed()) {
+            $post = Post::findOrFail($id);
+            return view('posts.edit', compact('post'));
+        } else {
+            session()->flash('message', $response->message());
+            return redirect()->route('posts.index');
+        }
     }
 
     /**
@@ -84,16 +91,21 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'caption'=>'required|max:800',
-        ]);
+        $response = Gate::inspect('update', Post::findOrFail($id));
+        $post = Post::findOrFail($id);
+        if ($response->allowed()) {
+            $validatedData = $request->validate([
+                'caption' => 'required|max:800',
+            ]);
+            $post->caption = $request->caption;
+            $post->save();
 
-        $post=Post::findOrFail($id);
-        $post->caption=$request->caption;
-        $post->save();
-
-        session()->flash('message', 'Post was updated');
-        return redirect('dashboard/posts/'.$post->id);
+            session()->flash('post', 'Post was updated');
+            return redirect('posts/' . $post->id);
+        } else {
+            session()->flash('message', $response->message());
+            return redirect('posts/' . $post->id);
+        }
     }
 
     /**
@@ -104,10 +116,16 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $response = Gate::inspect('delete', Post::findOrFail($id));
+        if ($response->allowed()) {
+            $post = Post::findOrFail($id);
+            $post->delete();
 
-        session()->flash('message', 'Post was deleted');
-        return redirect()->route('posts.index');
+            session()->flash('message', 'Post was deleted');
+            return redirect()->route('posts.index');
+        } else {
+            session()->flash('message', $response->message());
+            return redirect()->route('posts.index');
+        }
     }
 }
