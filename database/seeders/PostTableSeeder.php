@@ -17,6 +17,7 @@ class PostTableSeeder extends Seeder
     {
         $pizzalove = new Post;
         $pizzalove->caption = "I love pizza";
+        //$pizzalove->title = "Pizza love";
         $pizzalove->user_id = 1;
         $pizzalove->save();
 
