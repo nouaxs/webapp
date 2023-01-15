@@ -6,9 +6,11 @@
 
 <head>
     <link rel="stylesheet" href="{{ asset('postcontainer.css') }}" />
+    @@livewireStyles
 </head>
 
 @section('content')
+    @livewireScripts
     <p>The posts on this platform</p>
     <div class="post">
     <form method="POST" action="{{ route('posts.store') }}">
@@ -33,6 +35,7 @@
             <div>
                 <a href="posts/{{ $post->id }}">see full post</a>
             </div>
+            <livewire:livewire-comments/>
         </div>
     @endforeach
     <div>
