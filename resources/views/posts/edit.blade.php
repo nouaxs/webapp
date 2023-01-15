@@ -12,10 +12,10 @@
                 <div>
                     <label for='caption'>Type your changed post (max:800 characters)</label>
                 </div>
-                <textarea name="caption" rows="4" cols="50" maxlength='800' value='caption'></textarea>
+                <textarea name="caption" rows="4" cols="50" maxlength='800'></textarea><br>
                 <div>
-                    <button>Update post</button>
-                </div>
+                    <button class="btn_nav">Update post</button>
+                </div><br>
                 <a href="{{ route('posts.show', ['id' => $post->id]) }}">Cancel</a>
             </form>
         </div>

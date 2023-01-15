@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
     Route::put('/posts/{id}/update', [PostController::class, 'update'])->name('posts.update');
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::delete('/posts/delete/{post_id}', [CommentController::class, 'destroy'])->name('posts.destroy');
+    Route::get('/posts/{post_id}', [CommentController::class, 'delete'])->name('posts.delete');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'posts'], function () {

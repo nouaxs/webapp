@@ -8,9 +8,9 @@
         .btn_nav {
             font: sans-serif;
             padding: 0;
-            border: none;
-            opacity: 0.7;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            border: ridge;
+            opacity: 0.8;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
             border-radius: 45px;
             width: 140px;
             height: 45px;

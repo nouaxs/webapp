@@ -18,7 +18,7 @@
                 </div>
                 <textarea name="caption" rows="4" cols="50" maxlength='800'></textarea>
                 <div>
-                    <button>Add post</button>
+                    <button class="btn_nav">Add post</button>
                 </div>
         </div>
         </form>
@@ -29,7 +29,7 @@
                         <span><a href="users/{{ $post->user_id }}">{{ $post->user->name }}</a> posted</span>
                     </div>
                     <div class="post_body">
-                        {{ $post->caption }}
+                        <h3>{{ $post->caption }}</h3>
                     </div>
                     <div>
                         <a href="posts/{{ $post->id }}">see full post</a>
