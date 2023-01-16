@@ -26,9 +26,10 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware('guest');
 
-
-Route::get('/users', [UserController::class, 'index'])->withoutMiddleware(['auth'])->name('users.index');
-Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
@@ -45,6 +46,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'posts'], function () {
     Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::get('/comments/show/{post_id}', [CommentController::class, 'show'])->name('comments.show');
     Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories/{category_id}', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/show/{category_id}', [CategoryController::class, 'show'])->name('comments.show');
 });
 
 /*

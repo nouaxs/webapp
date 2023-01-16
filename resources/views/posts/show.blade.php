@@ -27,7 +27,7 @@
             @foreach ($post->comments as $comment)
                 <div class="post">
                     <div class="post_user">
-                        <span><a href="users/{{ $comment->user_id }}">{{ $comment->user->name }}</a> commented</span>
+                        <span><a href="{{ url('/users/' . $comment->user_id) }}">{{ $comment->user->name }}</a> commented</span>
                     </div>
                     <div class="post_body">
                         <h2>{{ $comment->content }}</h2>
