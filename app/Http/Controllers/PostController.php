@@ -97,6 +97,7 @@ class PostController extends Controller
             $validatedData = $request->validate([
                 'caption' => 'required|max:800',
             ]);
+
             $post->caption = $request->caption;
             $post->save();
 

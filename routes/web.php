@@ -38,15 +38,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/posts/{id}/update', [PostController::class, 'update'])->name('posts.update');
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-    //Route::get('/posts/{post_id}', [CommentController::class, 'delete'])->name('posts.delete');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'posts'], function () {
     Route::post('/comments/{post_id}', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
     Route::get('/comments/show/{post_id}', [CommentController::class, 'show'])->name('comments.show');
-    Route::delete('/comments/delete/{comment_id}', [CommentController::class, 'destroy'])->name('comments.destroy');
-    Route::get('/comments/{comment_id}', [CommentController::class, 'delete'])->name('comments.delete');
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 /*

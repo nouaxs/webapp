@@ -4,7 +4,7 @@
     <div class="scroll">
 
         <div class="post">
-            <h4><a href="{{ url('/users/'. $post->user->id) }}">{{ $post->user->name }}</a> posted:</h4>
+            <h4><a href="{{ url('/users/' . $post->user->id) }}">{{ $post->user->name }}</a> posted:</h4>
             <div class="post_body">
                 <h2>{{ $post->caption }}</h2>
             </div>
@@ -32,18 +32,18 @@
                     <div class="post_body">
                         <h2>{{ $comment->content }}</h2>
                         <br>
-                        @if ($post->user->id == auth()->user()->id)
-                        <form action="{{ route('comments.delete', ['comment_id' => $comment->id]) }}" method="delete">
-                            @csrf
-                            <button class="btn_nav">Delete comment</button>
-                        </form>
+                        @if ($comment->user->id == auth()->user()->id)
+                            <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                                @method('DELETE')
+                                <button class="btn_nav">Delete comment</button>
+                            </form>
                         @endif
                     </div>
                 </div>
             @endforeach
             @if ($post->user->id == auth()->user()->id)
                 <br>
-                <form action="{{ route('posts.destroy',  $post->id) }}" method="POST">
+                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="btn_nav">Delete post</button>
