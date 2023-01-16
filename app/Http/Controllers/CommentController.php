@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -55,19 +56,6 @@ class CommentController extends Controller
         
     }
 
-    /*
-    public function store(Request $request) {
-     if(Request::ajax()){
-           $comment = new Comment();
-           $comment->name = $request->name;
-           $comment->type = $request->type;
-           $comment->price = $request->price;
-
-           $comment->save();
-           return response()->json(['success'=>'Data is successfully added']);
-     }
-    }*/
-
     
     /**
      * Display the specified resource.
@@ -111,10 +99,18 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-            $comment = Comment::findOrFail($id);
+
+        $response = Gate::inspect('delete', Post::findOrFail($id));
+        $comment = Comment::findOrFail($id);
+        if ($response->allowed()) {
+            
             $comment->delete();
 
-            session()->flash('message', 'Post was deleted');
-            return redirect()->route('posts.show',$id);
+            session()->flash('message', 'Comment was deleted');
+            return redirect()->route('posts.show',$comment->post_id);
+        } else {
+            session()->flash('message', $response->message());
+            return redirect()->route('posts.show', $comment->post_id);
+        }
     }
 }

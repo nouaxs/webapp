@@ -34,6 +34,7 @@
                         <br>
                         @if ($comment->user->id == auth()->user()->id)
                             <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+                                @csrf
                                 @method('DELETE')
                                 <button class="btn_nav">Delete comment</button>
                             </form>
